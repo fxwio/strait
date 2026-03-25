@@ -1,0 +1,16 @@
+services:
+  gateway:
+    image: "${GATEWAY_IMAGE_REPO:-strait}:${GATEWAY_IMAGE_TAG:-local}"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    stop_grace_period: 5m
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      GATEWAY_CONFIG_PATH: /etc/strait/config.yaml
+    volumes:
+      - ./config.yaml:/etc/strait/config.yaml:ro

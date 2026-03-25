@@ -1,0 +1,52 @@
+groups:
+  - name: strait-latency
+    interval: 30s
+    rules:
+      - record: gateway:request_latency_seconds:p99
+        expr: |
+          histogram_quantile(
+            0.99,
+            sum by (provider, le) (
+              rate(gateway_request_duration_seconds_bucket{provider!="unknown"}[5m])
+            )
+          )
+      - record: gateway:request_latency_seconds:p999
+        expr: |
+          histogram_quantile(
+            0.999,
+            sum by (provider, le) (
+              rate(gateway_request_duration_seconds_bucket{provider!="unknown"}[5m])
+            )
+          )
+      - record: gateway:upstream_latency_seconds:p99
+        expr: |
+          histogram_quantile(
+            0.99,
+            sum by (provider, le) (
+              rate(gateway_upstream_request_duration_seconds_bucket[5m])
+            )
+          )
+      - record: gateway:upstream_latency_seconds:p999
+        expr: |
+          histogram_quantile(
+            0.999,
+            sum by (provider, le) (
+              rate(gateway_upstream_request_duration_seconds_bucket[5m])
+            )
+          )
+      - record: gateway:stream_ttft_seconds:p99
+        expr: |
+          histogram_quantile(
+            0.99,
+            sum by (provider, le) (
+              rate(gateway_stream_ttft_seconds_bucket[5m])
+            )
+          )
+      - record: gateway:stream_ttft_seconds:p999
+        expr: |
+          histogram_quantile(
+            0.999,
+            sum by (provider, le) (
+              rate(gateway_stream_ttft_seconds_bucket[5m])
+            )
+          )

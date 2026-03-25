@@ -1,0 +1,33 @@
+.git
+.github
+.vscode
+.env
+.env.*
+config.yaml
+*.log
+build/
+llm-gateway
+gateway
+releasecheck
+benchmark.test
+*.test
+
+# local and generated artifacts
+ops/perf/
+ops/release/reports/
+
+# non-runtime source tree
+benchmark/
+integration/
+scripts/
+**/*_test.go
+
+# docs and local project files
+README.md
+README.zh.md
+LICENSE
+Makefile
+docker-compose.yml
+config.example.yaml
+.env.example
+interview.md

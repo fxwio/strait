@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  shutdown_timeout: 300s
+
+auth:
+  rate_limit_qps: 5
+  rate_limit_burst: 10
+  tokens:
+    - name: "pilot"
+      value_env: "GATEWAY_TOKEN_DEFAULT"
+      rate_limit_qps: 5
+      rate_limit_burst: 10
+      allowed_models: ["Pro/MiniMaxAI/MiniMax-M2.5"]
+
+providers:
+  - name: "siliconflow"
+    base_url: "https://api.siliconflow.cn"
+    api_key_env: "SILICONFLOW_API_KEY"
+    models: ["Pro/MiniMaxAI/MiniMax-M2.5"]

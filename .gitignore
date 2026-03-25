@@ -1,0 +1,24 @@
+build/
+
+# local runtime files
+.env
+config.yaml
+
+# local binaries
+llm-gateway
+gateway
+releasecheck
+benchmark.test
+*.test
+
+# editor files
+.vscode/
+.DS_Store
+
+# generated perf and release artifacts
+ops/perf/latest.txt
+ops/perf/profiles/
+ops/release/reports/
+
+# local logs
+*.log
